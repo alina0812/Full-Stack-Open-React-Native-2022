@@ -4,7 +4,7 @@ class AuthStorage {
   constructor(namespace = 'auth') {
     this.namespace = namespace;
   }
-
+  
   async getAccessToken() {
     // Get the access token for the storage
     const accessToken = await AsyncStorage.getItem(`${this.namespace}:accessToken`,);
