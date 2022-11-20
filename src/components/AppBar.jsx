@@ -3,6 +3,8 @@ import Constants from 'expo-constants';
 import { Link } from "react-router-native";
 import theme from '../theme';
 
+import useSignOut from '../hooks/useSignOut';
+
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
@@ -21,6 +23,8 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
+  const { signOut, user } = useSignOut();
+
   return <SafeAreaView style={styles.container}>
     <ScrollView horizontal>
       <Pressable>
@@ -28,11 +32,18 @@ const AppBar = () => {
           <Text style = {styles.text}>Repositories</Text>
         </Link>
       </Pressable>
-      <Pressable>
-        <Link to="/SignIn">
-          <Text style = {styles.text}>Sign in</Text>
-        </Link>
-      </Pressable>
+      {user ? (
+          <Pressable onPress = {signOut}>
+              <Text style = {styles.text}>Sign out</Text>
+          </Pressable>
+        ) : (
+          <Pressable>
+            <Link to="/signIn">
+              <Text style = {styles.text}>Sign in</Text>
+            </Link>
+          </Pressable>
+          )}    
+      
     </ScrollView>
   </SafeAreaView>;
 };
