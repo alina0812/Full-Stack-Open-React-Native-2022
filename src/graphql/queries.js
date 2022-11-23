@@ -34,6 +34,20 @@ query ($id: ID!){
     forksCount
     reviewCount
     ratingAverage
+    reviews {
+      edges {
+        node {
+          id
+          text
+          rating
+          createdAt
+          user {
+            id
+            username
+          }
+        }
+      }
+    }
   }
 }
 `;
@@ -46,5 +60,3 @@ query {
   }
 }
 `;
-
-// other queries...
