@@ -34,9 +34,11 @@ const AppBar = () => {
         </Link>
       </Pressable>
       {user && (
+        <Pressable>
           <Link to="/createReview">
               <Text style = {styles.text}>Create a review</Text>
           </Link>
+          </Pressable>
         )}    
       {user ? (
           <Pressable onPress = {signOut}>
@@ -48,7 +50,14 @@ const AppBar = () => {
               <Text style = {styles.text}>Sign in</Text>
             </Link>
           </Pressable>
-          )}    
+          )}  
+          {!user && (
+          <Pressable>
+            <Link to="/signUp">
+              <Text style = {styles.text}>Sign up</Text>
+              </Link>
+          </Pressable>
+        )}      
       
     </ScrollView>
   </SafeAreaView>;
