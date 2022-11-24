@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { FlatList, View, StyleSheet, Pressable } from 'react-native';
 import { Button, Menu, Divider, Provider } from 'react-native-paper';
+import { Searchbar } from 'react-native-paper';
 import { AntDesign } from '@expo/vector-icons';
+import { useDebounce } from "use-debounce";
 import RepositoryItem from './RepositoryItem';
 import useRepositories from '../hooks/useRepositories';
 import { useNavigate } from 'react-router-native';
@@ -11,6 +13,9 @@ import Text from './Text';
 const styles = StyleSheet.create({
   separator: {
     height: 10,
+  },
+  searchBar: {
+    paddingHorizontal: 10,
   },
   menuView: {
       paddingVertical: 5,
@@ -34,7 +39,10 @@ const RepositoryList = () => {
   const [item, setItem] = useState("Latest repositories");
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
-  const { repositories } = useRepositories(item);
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [debouncedSearchQuery] = useDebounce(searchQuery, 500);
+  const onChangeSearch = query => setSearchQuery(query);
+  const { repositories } = useRepositories(item, debouncedSearchQuery);
 
   const repositoryNodes = repositories
     ? repositories.edges.map(edge => edge.node)
@@ -48,6 +56,12 @@ const RepositoryList = () => {
 
   return (
     <Provider>
+          <Searchbar
+            placeholder="Search"
+            onChangeText={onChangeSearch}
+            value={searchQuery}
+            style={styles.searchBar}
+          />
           <View style={styles.menuView}>
             <Menu
             visible={visible}
