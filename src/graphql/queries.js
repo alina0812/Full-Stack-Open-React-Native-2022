@@ -68,6 +68,9 @@ query getCurrentUser($includeReviews: Boolean = false) {
             id
             username
           }
+          repository {
+            id
+          }
         }
       }
     }

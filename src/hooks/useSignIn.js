@@ -17,8 +17,6 @@ const useSignIn = () => {
 
       return result;
     };
-
-
   
     return [signIn, result];
   };
