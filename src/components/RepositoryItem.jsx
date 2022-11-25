@@ -79,31 +79,31 @@ const RepositoryItem = ({item}) => {
         reviews = Math.round((reviews/1000)*10)/10 + 'k';
     }
     return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="repositoryItem">
         <View style={styles.ImageAndName}>
             <Image source={{ uri: `${item.ownerAvatarUrl}` }}  style={styles.image}/>
             <View style={styles.NameAndDescription}>
-                <Text style={styles.name} >{item.fullName}</Text>
-                <Text style={styles.description}>{item.description}</Text>
-                <Text style={styles.language}>{item.language}</Text>
+                <Text style={styles.name} testID="repositoryName" >{item.fullName}</Text>
+                <Text style={styles.description} testID="description">{item.description}</Text>
+                <Text style={styles.language} testID="language">{item.language}</Text>
             </View>
         </View>
 
         <View style={styles.Properties}>
             <View style={styles.item}>
-                <Text style={styles.number}>{stars} </Text>
+                <Text style={styles.number} testID="stargazersCount">{stars} </Text>
                 <Text style={styles.text}>Stars</Text>
             </View>
             <View style={styles.item}>
-                <Text style={styles.number}>{forks}</Text>
+                <Text style={styles.number} testID = "forksCount">{forks}</Text>
                 <Text style={styles.text}>Forks</Text>
             </View>
             <View style={styles.item}>
-                <Text style={styles.number}>{reviews}</Text>
+                <Text style={styles.number} testID="reviewCount">{reviews}</Text>
                 <Text style={styles.text}>Reviews</Text>
             </View>
             <View style={styles.item}>
-                <Text style={styles.number}>{item.ratingAverage}</Text>
+                <Text style={styles.number} testID="ratingAverage">{item.ratingAverage}</Text>
                 <Text style={styles.text}>Rating</Text>
             </View>
         </View>
