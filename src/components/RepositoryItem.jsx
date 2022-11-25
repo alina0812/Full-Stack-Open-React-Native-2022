@@ -78,6 +78,7 @@ const RepositoryItem = ({item}) => {
     if (reviews > 1000){
         reviews = Math.round((reviews/1000)*10)/10 + 'k';
     }
+    
     return (
     <View style={styles.container} testID="repositoryItem">
         <View style={styles.ImageAndName}>
