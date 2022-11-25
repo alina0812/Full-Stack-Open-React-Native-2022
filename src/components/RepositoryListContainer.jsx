@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-export const RepositoryListContainer = ({ repositories }) => {
+export const RepositoryListContainer = ({ repositories, onEndReach }) => {
 
     let navigate = useNavigate();
 
@@ -30,6 +30,8 @@ export const RepositoryListContainer = ({ repositories }) => {
         data={repositoryNodes}
         renderItem={renderItem}
         ItemSeparatorComponent={ItemSeparator}
+        onEndReached={onEndReach}
+        onEndReachedThreshold={0.5}
         />
     );
   };
