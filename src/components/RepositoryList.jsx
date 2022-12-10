@@ -42,8 +42,9 @@ const RepositoryList = () => {
     fetchMore
   }
 
-  return (<Provider>
-        <Searchbar
+  return (
+    <Provider>
+      <Searchbar
           placeholder="Search"
           onChangeText={onChangeSearch}
           value={searchQuery}

@@ -1,5 +1,5 @@
 import { Pressable, View } from 'react-native';
-import { FlatList, StyleSheet } from 'react-native';
+import { Alert, FlatList, StyleSheet } from 'react-native';
 import { useNavigate } from 'react-router-native';
 import ReviewItem from './ReviewItem';
 import useGetReviews from '../hooks/useGetReviews';
@@ -70,8 +70,17 @@ const MyReviews = () => {
                         </Pressable>
                         <Pressable style={styles.pressable2} onPress={async () => { 
                                         try {
-                                            await deleteReview(item.id);
-                                            refetch();
+                                          Alert.alert(
+                                            "Delete review",
+                                            "Are you sure you want to delete this review?",
+                                            [
+                                              {
+                                                text: "CANCEL",
+                                              },
+                                              { text: "DELETE", onPress: () => {deleteReview(item.id);
+                                                refetch();} }
+                                            ]
+                                          );
                                         } catch (e) {
                                             console.log(e);
                                         }}}>
