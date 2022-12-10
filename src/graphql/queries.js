@@ -28,7 +28,7 @@ query($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection, $search
 `;
 
 export const GET_REPOSITORY = gql`
-query ($id: ID!){
+query ($id: ID!, $after: String, $first: Int){
   repository(id: $id) {
     id
     fullName
@@ -40,7 +40,7 @@ query ($id: ID!){
     forksCount
     reviewCount
     ratingAverage
-    reviews {
+    reviews (first: $first, after: $after){
       edges {
         node {
           id
@@ -52,6 +52,12 @@ query ($id: ID!){
             username
           }
         }
+        cursor
+      }
+      pageInfo {
+        endCursor
+        startCursor
+        hasNextPage
       }
     }
   }

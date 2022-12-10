@@ -35,11 +35,10 @@ const RepositoryList = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
   const onChangeSearch = query => setSearchQuery(query);
   const [debouncedSearchQuery] = useDebounce(searchQuery, 500);
-  const { repositories, fetchMore } = useRepositories(item, debouncedSearchQuery, 13);
+  const { repositories, fetchMore } = useRepositories(item, debouncedSearchQuery, 4);
 
   const onEndReach = () => {
-    console.log("You have reached the end of the list");
-    fetchMore
+    fetchMore();
   }
 
   return (
