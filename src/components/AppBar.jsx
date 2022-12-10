@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     paddingTop: 70,
     paddingBottom: 30,
     paddingLeft: 30,
+    paddingRight: 30,
   },
 });
 
@@ -32,6 +33,20 @@ const AppBar = () => {
           <Text style = {styles.text}>Repositories</Text>
         </Link>
       </Pressable>
+      {user && (
+        <Pressable>
+          <Link to="/createReview">
+              <Text style = {styles.text}>Create a review</Text>
+          </Link>
+          </Pressable>
+        )}
+        {user && (
+        <Pressable>
+          <Link to="/myReviews">
+              <Text style = {styles.text}>My reviews</Text>
+          </Link>
+          </Pressable>
+        )}        
       {user ? (
           <Pressable onPress = {signOut}>
               <Text style = {styles.text}>Sign out</Text>
@@ -42,7 +57,14 @@ const AppBar = () => {
               <Text style = {styles.text}>Sign in</Text>
             </Link>
           </Pressable>
-          )}    
+          )}  
+          {!user && (
+          <Pressable>
+            <Link to="/signUp">
+              <Text style = {styles.text}>Sign up</Text>
+              </Link>
+          </Pressable>
+        )}      
       
     </ScrollView>
   </SafeAreaView>;
